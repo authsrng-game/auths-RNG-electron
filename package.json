@@ -1,0 +1,20 @@
+{
+  "name": "auths-rng",
+  "productName": "auth's RNG",
+  "version": "0.1.0",
+  "description": "desktop build of auth's RNG",
+  "main": "main.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "fetch": "sh scripts/fetch-native.sh",
+    "dist": "electron-builder --linux AppImage dir"
+  },
+  "devDependencies": {
+    "electron": "44.9.0",
+    "electron-builder": "^26.15.3"
+  },
+  "author": "auth",
+  "homepage": "https://authsrng.xyz",
+  "desktopName": "xyz.authsrng.Game.desktop"
+}

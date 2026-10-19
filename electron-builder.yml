@@ -1,0 +1,38 @@
+appId: xyz.authsrng.Game
+productName: auth's RNG
+executableName: auths-rng
+artifactName: auths-rng-${version}-${os}-${arch}.${ext}
+asar: true
+files:
+  - main.js
+  - package.json
+  - game/**/*
+  - '!game/.git*'
+  - '!game/.github/**'
+  - '!game/.wrangler/**'
+  - '!game/.vscode/**'
+  - '!game/functions/**'
+  - '!game/tests/**'
+  - '!game/blog/**'
+  - '!game/node_modules/**'
+  - '!game/*.md'
+  - '!game/package*.json'
+  - '!game/*.config.*'
+  - '!game/.*rc'
+  - '!game/.*ignore'
+  - '!game/tsconfig.json'
+  - '!game/_headers'
+  - '!game/_security'
+  - '!game/robots.txt'
+  - '!game/.editorconfig'
+  - '!game/.stylelintrc.json'
+  - '!game/404.html'
+  - '!game/assets/repo*.png'
+  - '!game/assets/audio/output.wav'
+linux:
+  category: Game
+  icon: build/icon.png
+  syncDesktopName: true
+  target:
+    - AppImage
+    - dir

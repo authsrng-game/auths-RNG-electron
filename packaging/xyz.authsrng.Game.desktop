@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=auth's RNG
+Comment=an incremental gacha rng game
+Exec=auths-rng
+Icon=xyz.authsrng.Game
+Terminal=false
+Categories=Game;
+StartupWMClass=xyz.authsrng.Game

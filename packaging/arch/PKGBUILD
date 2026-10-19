@@ -1,0 +1,36 @@
+# Maintainer: Ivy Lopez <skunkolee@gmail.com>
+pkgname=auths-rng
+pkgver=0.1.0
+pkgrel=1
+_native=native-v1
+pkgdesc="auth's RNG, an incremental gacha rng game (desktop build)"
+arch=('any')
+url="https://authsrng.xyz"
+license=('MIT')
+depends=('electron44' 'hicolor-icon-theme')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/authsrng-game/auths-RNG-electron/archive/refs/tags/v$pkgver.tar.gz"
+        "$pkgname-$_native.tar.gz::https://github.com/authsrng-game/auths-RNG/archive/refs/tags/$_native.tar.gz")
+sha256sums=('be2700fbbf63928a420c2712d72d679af922d7ae0cc9f7fe0247a4587fc5dc12'
+            '32ab3a17d038ac9cf7ab4fb7df8ee7fb0482206a45f7f13e7d5f5ede72be69df')
+
+package() {
+  local shell="$srcdir/auths-RNG-electron-$pkgver"
+  local game="$srcdir/auths-RNG-$_native"
+  local lib="$pkgdir/usr/lib/$pkgname"
+
+  install -d "$lib"
+  install -m644 "$shell/main.js" "$shell/package.json" "$lib/"
+  cp -r "$game" "$lib/game"
+
+  cd "$lib/game"
+  rm -rf .github .wrangler .vscode functions tests blog node_modules
+  rm -f .git* .editorconfig .stylelintrc.json .eslintignore .htmlhintrc .prettierignore .prettierrc 404.html *.md _headers _security robots.txt package.json package-lock.json tsconfig.json eslint.config.mjs playwright.config.js assets/repo*.png assets/audio/output.wav
+
+  find "$lib" -type d -exec chmod 755 {} +
+  find "$lib" -type f -exec chmod 644 {} +
+
+  install -Dm755 "$shell/packaging/auths-rng" "$pkgdir/usr/bin/$pkgname"
+  install -Dm644 "$shell/packaging/xyz.authsrng.Game.desktop" "$pkgdir/usr/share/applications/xyz.authsrng.Game.desktop"
+  install -Dm644 "$shell/build/icon-512.png" "$pkgdir/usr/share/icons/hicolor/512x512/apps/xyz.authsrng.Game.png"
+  install -Dm644 "$shell/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

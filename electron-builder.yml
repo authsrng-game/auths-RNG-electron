@@ -36,3 +36,11 @@ linux:
   target:
     - AppImage
     - dir
+win:
+  icon: build/icon.png
+  target:
+    - nsis
+nsis:
+  artifactName: auths-rng-setup-${version}.${ext}
+  oneClick: true
+  perMachine: false
